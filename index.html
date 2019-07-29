@@ -1,0 +1,94 @@
+<html>
+    <head>
+        <title>Simple Rule based form</title>
+        <link rel='stylesheet' type='text/css' href='style.css'>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <button id="myBtn">Open Form</button>
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+            <span class="close">&times;</span>
+            <h4>Add Revenue Group</h4>
+                <p>Revenue Group Title</p>
+                <input type='text' id='demo'>
+                <p>
+                    <div class="row">
+                        <div class="col-md-2">
+                        <label>If</label>
+                        <select id="demo2">
+                            <option>All</option>    
+                            <option>Only one</option>
+                        </select>
+                        <label>of the below conditions are met</label>
+                        </div>
+                    </div>
+                    </p>
+                    <p>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <select id="demo3">
+                                <option>All</option>    
+                                <option>Only one</option>
+                            </select>
+                            <select id="demo3">
+                                    <option>All</option>    
+                                    <option>Only one</option>
+                            </select>
+                            <input type='text' placeholder="  insert parameter" id='demo'>
+                            <input type='button' id='btn2' value="-  +">
+                        </div>
+                    </div>
+                </p>
+                <label>then revenue is</label>
+                <span><input type='number' id='demo4'></span><br><br>
+                <button type='button' id='btn'>Confirm</button>
+                <span><button type='button' id='btn1'>Cancel</button></span>
+            </div>
+        </div>
+        <script>
+            var modal = document.getElementById("myModal");
+            var btn = document.getElementById("myBtn");
+            var span = document.getElementsByClassName("close")[0];
+            btn.onclick = function() 
+            {
+                modal.style.display = "block";
+            }
+            span.onclick = function() 
+            {
+                modal.style.display = "none";
+            }
+            window.onclick = function(event) 
+            {
+                if (event.target == modal) 
+                {
+                modal.style.display = "none";
+                }
+            }
+        </script>
+        <script>
+            $(document).ready(function() 
+            {
+                var max_fields = 5; 
+                var wrapper = $("#items"); 
+                var add_button = $("#btn2"); 
+                var x = 1;  
+                $(add_button).click(function(e)
+                {
+                    e.preventDefault();
+                    if(x < max_fields) 
+                    { 
+                        x++; 
+                        $(wrapper).append('<div><input type="text" placeholder="  insert parameter" id="demo"><a href="#" class="remove_field">Remove</a></div>');
+                    }
+                });
+                $(wrapper).on("click",".remove_field", function(e)
+                {
+                    e.preventDefault(); 
+                    $(this).parent('div').remove();
+                    x--;
+                })
+            });
+        </script>
+    </body>
+</html>
