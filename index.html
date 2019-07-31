@@ -2,7 +2,31 @@
     <head>
         <title>Simple Rule based form</title>
         <link rel='stylesheet' type='text/css' href='style.css'>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script>
+            $(document).ready(function() 
+            {
+                var max_fields      = 10; 
+                var wrapper         = $(".items"); 
+                var add_button      = $("#btn2"); 
+                var x = 1; 
+                $(add_button).click(function(e)
+                { 
+                    e.preventDefault();
+                    if(x < max_fields)
+                    { 
+                        $(wrapper).append('<div><input type="text" placeholder="  insert parameter" id="demo1"><input type="button" id="btn2" value=" - " class="remove_field"></div>');
+                        x++; 
+                    }
+                });
+                $(wrapper).on("click",".remove_field", function(e)
+                {   
+                    e.preventDefault(); 
+                    $(this).parent('div').remove(); 
+                    x--;
+                })
+            });
+        </script>
     </head>
     <body>
         <button id="myBtn">Open Form</button>
@@ -36,7 +60,10 @@
                                     <option>Only one</option>
                             </select>
                             <input type='text' placeholder="  insert parameter" id='demo'>
-                            <input type='button' id='btn2' value="-  +">
+                            <input type='button' id='btn2' value=" + " onclick='func()'>
+                            <div class='items'>
+
+                            </div>
                         </div>
                     </div>
                 </p>
@@ -65,30 +92,6 @@
                 modal.style.display = "none";
                 }
             }
-        </script>
-        <script>
-            $(document).ready(function() 
-            {
-                var max_fields = 5; 
-                var wrapper = $("#items"); 
-                var add_button = $("#btn2"); 
-                var x = 1;  
-                $(add_button).click(function(e)
-                {
-                    e.preventDefault();
-                    if(x < max_fields) 
-                    { 
-                        x++; 
-                        $(wrapper).append('<div><input type="text" placeholder="  insert parameter" id="demo"><a href="#" class="remove_field">Remove</a></div>');
-                    }
-                });
-                $(wrapper).on("click",".remove_field", function(e)
-                {
-                    e.preventDefault(); 
-                    $(this).parent('div').remove();
-                    x--;
-                })
-            });
         </script>
     </body>
 </html>
